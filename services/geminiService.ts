@@ -5,7 +5,15 @@ import { Transaction } from "../types";
 export const getFinancialAdvice = async (transactions: Transaction[]): Promise<string> => {
   if (transactions.length === 0) return "Mulai tambahkan transaksi untuk mendapatkan saran keuangan dari AI.";
 
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Ambil API Key secara aman dari environment variable
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+  
+  if (!apiKey) {
+    console.warn("API Key tidak ditemukan. Pastikan sudah menyetel environment variable API_KEY.");
+    return "Ups, AI Advisor sedang beristirahat karena konfigurasi kunci tidak ditemukan.";
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   
   const expenseData = transactions
     .filter(t => t.type === 'expense')
@@ -14,7 +22,7 @@ export const getFinancialAdvice = async (transactions: Transaction[]): Promise<s
 
   const prompt = `
     Saya memiliki data pengeluaran berikut: ${expenseData}. 
-    Berikan saran keuangan singkat (maksimal 3 kalimat) dalam Bahasa Indonesia untuk membantu saya menghemat uang atau mengelola keuangan lebih baik.
+    Berikan saran keuangan sangat singkat (maksimal 2 kalimat) dalam Bahasa Indonesia untuk membantu saya menghemat uang.
   `;
 
   try {
