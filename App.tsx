@@ -4,7 +4,7 @@ import {
   PlusCircle, TrendingUp, TrendingDown, 
   Trash2, PieChart as PieChartIcon, Sparkles, 
   Sun, Moon, LayoutDashboard, History, 
-  ArrowUpRight, ArrowDownRight, MoreHorizontal,
+  ArrowUpRight, ArrowDownRight, 
   ChevronRight, Calculator, CalendarDays, 
   Clock, Calendar, Github, Linkedin
 } from 'lucide-react';
