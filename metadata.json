@@ -1,0 +1,5 @@
+{
+  "name": "WealthFlow: Personal Expense Tracker",
+  "description": "A modern, glassmorphism-inspired personal finance dashboard with real-time tracking, spending insights, and AI-powered financial advice using Gemini.",
+  "requestFramePermissions": []
+}
